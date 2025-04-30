@@ -1,1 +1,43 @@
-<p>eperson-template-driven-form works!</p>
+<div class="d-flex flex-column">
+  <h5>New Person Form</h5>
+  <form #eForm="ngForm" class="d-flex flex-column">
+    <mat-form-field>
+      <mat-label>Firstname</mat-label>
+      <input matInput ngModel required type="text" name="givenName" #givenName="ngModel"/>
+      <mat-error>Firstname is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Lastname</mat-label>
+      <input ngModel #surname="ngModel" matInput required type="text" name="surname"/>
+      <mat-error>Lastname is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Age</mat-label>
+      <input ngModel #age="ngModel" type="number" min="18" max="100" name="age" required matInput/>
+      <mat-error>Age is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input pattern="[a-zA-Z0-9\.\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}" ngModel #email="ngModel" matInput required type="text" name="email"/>
+      @if (email.errors && email.errors['required']) {
+      <mat-error>Email is required</mat-error>
+      }
+      @if (email.errors && email.errors['pattern']) {
+        <mat-error>Email is not valid</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Education</mat-label>
+      <mat-select ngModel #education="ngModel" name="education" required>
+        <mat-option value="Some college, no degree">Some college, no degree</mat-option>
+        <mat-option value="Master's degree">Master's degree</mat-option>
+        <mat-option value="Bachelor's degree">Bachelor's degree</mat-option>
+        <mat-option value="No formal education">No formal education</mat-option>
+      </mat-select>
+      <mat-error>Education is required</mat-error>
+    </mat-form-field>
+  </form>
+  <button mat-flat-button [disabled]="eForm.invalid" color="primary" (click)="onSubmit(eForm.value)">Submit</button>
+  <button (click)="onSetValue()">Set Value</button>
+  <!-- {{ eForm.value | json }} -->
+</div>
