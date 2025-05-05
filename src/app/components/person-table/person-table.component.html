@@ -1,3 +1,6 @@
+@if (!personInput) {
+  <div class="alert alert-danger text-center">No Person Details</div>
+} @else {
 <div>
   <!-- <h1>From person table component</h1> -->
 
@@ -25,21 +28,25 @@
     <caption>Person Details</caption>
     <tr>
       <td class="fw-semibold text-end">Firstname</td>
-      <td class="ps-2">{{personInput?.givenName}}</td>
+      <td class="ps-2">{{personInput!.givenName}}</td>
     </tr>
     <tr>
         <td class="fw-semibold text-end">Lastname</td>
-        <td class="ps-2">{{personInput?.surname}}</td>
+        <td class="ps-2">{{personInput!.surname}}</td>
     </tr>
     <tr>
       <td class="fw-semibold text-end">Age</td>
-      <td class="ps-2">{{personInput?.age}}</td>
+      <td class="ps-2">{{personInput!.age}}</td>
     </tr>
     <tr>
       <td class="fw-semibold text-end">Email</td>
-      <td class="ps-2">{{personInput?.email}}</td>
+      <td class="ps-2">{{personInput!.email}}</td>
     </tr>
-    @if (isPerson()) {
+    <tr>
+      <td class="fw-semibold text-end">{{ (isPerson() && "Address") || "Education"}}</td>
+      <td class="ps-2">{{ addressOrEducation }}</td>
+    </tr>
+    <!-- @if (isPerson()) {
     <tr>
       <td class="fw-semibold text-end">Address</td>
       <td class="ps-2">{{ addressOrEducation }}</td>
@@ -49,7 +56,8 @@
     <tr>
       <td class="fw-semibold text-end">Education</td>
       <td class="ps-2">{{ addressOrEducation }}</td>
-    </tr>
-  }
+    </tr> -->
+  <!-- } -->
   </table>
 </div>
+}
