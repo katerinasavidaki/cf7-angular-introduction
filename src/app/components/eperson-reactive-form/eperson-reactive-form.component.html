@@ -32,7 +32,7 @@
       <mat-error>Education is required field</mat-error>
     </mat-form-field>
   </form>
-  <button class="mb-2" mat-flat-button color="primary" [disabled]='form.invalid' (click)="onSubmit(form.value)"> 
+  <button class="mb-2" mat-flat-button color="primary" [disabled]='form.invalid' (click)="onSubmit()"> 
     Submit
   </button>
   <button (click)="onSetValue()">Set value</button>
